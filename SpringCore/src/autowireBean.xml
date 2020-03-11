@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  
+  
+	<!-- ****************************************************************************************** -->
+	<!-- 1 . AutoWiring : byName with Setter method -->
+
+	<bean id="address" class="com.bridgelabz.autowiring.byname.Address" >
+		<property name="pincode" value="123123" />
+		<property name="city" value="pune" />
+	</bean>
+
+
+	<bean id="emp1" class="com.bridgelabz.autowiring.byname.Employee" autowire="byName">
+		<property name="id" value="1" />
+		<property name="name" value="chetan" />
+		
+	</bean>
+
+<!-- ****************************************************************************************** -->
+	
+
+	<!-- 2 . AutoWiring : byType with Setter method -->
+
+	<bean id="emp2" class="com.bridgelabz.autowiring.byname.Employee" autowire="byType">
+		<property name="id" value="4" />
+		<property name="name" value="Prakash" />
+	</bean>
+
+<!-- ****************************************************************************************** -->
+	
+	<!-- 3 . AutoWiring : constructor -->
+	
+	<bean id = "emp5" class = "com.bridgelabz.autowiring.constructor.Employee" autowire="constructor">
+		<constructor-arg name = "id" value = "1" />
+		<constructor-arg name = "name" value = "Nar" />
+		
+		
+	</bean>
+	
+	<bean id = "addres" class = "com.bridgelabz.autowiring.constructor.Address">
+		<constructor-arg name = "pincode" value = "123123"/>
+		<constructor-arg name ="city" value = "pune"/>
+	</bean>	
+	
+
+<!-- ****************************************************************************************** -->
+	<!-- 4 . AutoWiring : constructor using @anotation-->
+
+	
+
+ 	<bean id = "stud" class = "com.bridgelabz.autowiring.injavacode_beforeconstructor.Student">  
+ 	
+ 	</bean>
+
+	<bean id = "mark" class = "com.bridgelabz.autowiring.injavacode_beforeconstructor.Marklist">
+		<constructor-arg name = "sname" value = "Hindi"/>
+		<constructor-arg name = "smarks" value = "12"/>
+		
+	</bean> 
+	
+	
+
+<!-- ****************************************************************************************** -->
+	<!-- 5 . AutoWiring : @autowire before Setter method-->
+		
+
+	<bean id = "s1" class = "com.bridgelabz.autowiring.injavacode_beforeSetter.Student">  
+ 		
+
+ 	</bean>
+
+	<bean id = "marks" class = "com.bridgelabz.autowiring.injavacode_beforeSetter.Marklist">
+		<property name="sname" value = "Marathi"/>
+		<property name="smarks" value = "21"/>
+	</bean>   
+	
+	
+	
+<!-- ****************************************************************************************** -->
+	<!-- 6 . AutoWiring : @autowire + @qualifire When multiple object of same implementation-->
+
+	<bean id = "ss" class = "com.bridgelabz.autowiring.using_qualifire_annotation.Student">  
+ 		<property name="name" value = "Chetan"></property>	
+ 	
+ 	</bean>
+
+	<bean id = "marathimarks" class = "com.bridgelabz.autowiring.using_qualifire_annotation.Marklist">
+		<property name="sname" value = "Marathi"/>
+		<property name="smarks" value = "21"/>
+	</bean>   
+	
+	
+	<bean id = "hindimarks" class = "com.bridgelabz.autowiring.using_qualifire_annotation.Marklist">
+		<property name="sname" value = "Hindi"/>
+		<property name="smarks" value = "26"/>
+	</bean>   
+	
+	
+</beans>

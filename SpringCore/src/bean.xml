@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- ********************************************************************************** -->
+	<!-- 1. Spring IoC -->
+	<bean id="sim" class="com.bridgelabz.springioc.Vodaphone"></bean>
+
+	<!-- ********************************************************************************** -->
+
+	<!-- 2. Si dependancy Obejct And Primitive -->
+	<bean id="e" class="com.bridgelabz.SIdependancy.literal.Employee">
+		<property name="id" value="1" />
+		<property name="ename" value="chetan" />
+		<property name="address" ref="address" />
+	</bean>
+
+	<bean id="address"
+		class="com.bridgelabz.SIdependancy.literal.Address">
+		<property name="pincode" value="123123" />
+		<property name="city" value="pune" />
+	</bean>
+
+	<!-- ********************************************************************************** -->
+	<!-- 3. SI dependadncy (Setter Injection with Collection Example) -->
+	
+	
+	<bean id="q" class="com.bridgelabz.SIdependancy.collection.Question">
+		<property name="name" value="Which Programming Language do you like ? " />
+		<property name="answer">
+			<list>
+				<value>Java</value>
+				<value>Python</value>
+				<value>C++</value>
+				<value>c</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ********************************************************************************** -->
+	<!-- 4. SI dependadncy (Setter Injection with Non-String Collection (having 
+		Dependent Object) Example -->
+
+	<bean id="q2" class="com.bridgelabz.SIdependancy.collection2.Question">
+		<property name="name" value="What is Java ? " />
+		<property name="answer">
+			<list>
+				<ref bean = "a1"/> 
+				<ref bean = "a2"/> 
+				<ref bean = "a3"/> 
+				<ref bean = "a4"/> 
+			</list>
+		</property>
+	</bean>
+
+	<bean id = "a1" class = "com.bridgelabz.SIdependancy.collection2.Answer">
+		<property name="id" value = "1"/>
+		<property name="ans" value = "Platfor Independant"/>
+		<property name="author" value = "Mr. X"/>
+	</bean>
+	<bean id = "a2" class = "com.bridgelabz.SIdependancy.collection2.Answer">
+		<property name="id" value = "2"/>
+		<property name="ans" value = "Object Oriented "/>
+		<property name="author" value = "Mr. C"/>
+	</bean>
+	<bean id = "a3" class = "com.bridgelabz.SIdependancy.collection2.Answer">
+		<property name="id" value = "3"/>
+		<property name="ans" value = "HighLevel Programming Languegage "/>
+		<property name="author" value = "Mr. N"/>
+	</bean>
+	<bean id = "a4" class = "com.bridgelabz.SIdependancy.collection2.Answer">
+		<property name="id" value = "4"/>
+		<property name="ans" value = "All of the Above "/>
+		<property name="author" value = "Mr. John"/>
+	</bean>
+	
+
+		<!-- ********************************************************************************** -->
+	<!-- 5. CI dependadncy (Constructor Injection with Literal  -->
+	
+		<bean id = "e3" class= " com.bridgelabz.CIdependancy.literal.Employee">
+			<constructor-arg name = "id" value = "1" type = "int"/>
+			<constructor-arg name = "name" value = "Chetan" type = "String"/>
+		</bean>
+		
+	
+	
+		<!-- ********************************************************************************** -->
+	<!-- 6. CI dependadncy (Constructor Injection with Liter></bean -->
+	
+			<bean id= "e4" class= "com.bridgelabz.CIdependancy.dependantObject.Employee">
+				<constructor-arg name = "id" value= "1"/>
+				<constructor-arg name = "name" value= "Narayan"/>
+				<constructor-arg name = "address" ref = "address1"/>				
+			</bean>
+			
+			<bean id = "address1" class = "com.bridgelabz.CIdependancy.dependantObject.Address">
+				<constructor-arg name = "pincode" value= "123456"/>
+				<constructor-arg name = "city" value= "Mumbai"/>
+			</bean>
+
+		
+		<!-- ********************************************************************************** -->
+	<!-- 7. CI dependadncy : Constructor Injection with Collection Example-->
+
+			<bean id = "q5" class ="com.bridgelabz.CIdependancy.collection.Question">
+				<constructor-arg name = "name" value = "What is Java ? "/>
+				<constructor-arg name = "answer">
+					<list>
+						<value>Platform Independant</value>
+						<value>Object Orirented</value>
+						<value>None of avove</value>
+						<value>All of the above</value>
+					</list>
+				</constructor-arg>
+			</bean>
+			
+			
+			
+	<!-- ********************************************************************************** -->
+	<!-- 8. CI dependadncy : Constructor Injection with Non-String Collection (having Dependent Object) Example-->
+	
+		<bean id  = "q6" class = "com.bridgelabz.CIdependancy.collection2.Question">
+			<constructor-arg name = "name" value = "What is Java ?"/>
+			<constructor-arg name = "answer" >
+				<list>
+					<ref bean = "answer1"/>
+					<ref bean = "answer2"/>
+					<ref bean = "answer3"/>
+					<ref bean = "answer4"/>
+				</list>
+			</constructor-arg>
+		</bean>			
+		
+		
+		<bean id = "answer1" class = "com.bridgelabz.CIdependancy.collection2.Answer">
+			<constructor-arg name= "id" value="1"/>
+			<constructor-arg name= "ans" value="1 . platform Independant "/>
+			<constructor-arg name= "author" value="Mr. X"/>
+		</bean>
+		
+		<bean id = "answer2" class = "com.bridgelabz.CIdependancy.collection2.Answer">
+			<constructor-arg name= "id" value="2"/>
+			<constructor-arg name= "ans" value="2 . Portable "/>
+			<constructor-arg name= "author" value="Mr. X"/>
+		</bean>
+		<bean id = "answer3" class = "com.bridgelabz.CIdependancy.collection2.Answer">
+			<constructor-arg name= "id" value="3"/>
+			<constructor-arg name= "ans" value="3 . Object Oriented "/>
+			<constructor-arg name= "author" value="Mr. X"/>
+		</bean>
+		<bean id = "answer4" class = "com.bridgelabz.CIdependancy.collection2.Answer">
+			<constructor-arg name= "id" value="4"/>
+			<constructor-arg name= "ans" value="4 . All of the Above"/>
+			<constructor-arg name= "author" value="Mr. X"/>
+		</bean>
+		
+		
+	
+<!-- ************************************************************************************************ -->
+	
+
+</beans>
